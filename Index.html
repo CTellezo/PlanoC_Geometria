@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plano Cartesiano Navideño - Transformaciones</title>
+  <link rel="stylesheet" href="./Style.css">
+</head>
+<body>
+
+  <header>
+    <h1>🎄 Plano Cartesiano Navideño 🎅</h1>
+    <p>Ubica, traslada y rota figuras geométricas sobre su propio eje</p>
+  </header>
+
+  <div class="main-container">
+    <!-- Panel Izquierdo: Controles -->
+    <div class="panel">
+      <h2> 1. Figura y Posición Inicial</h2>
+      <div class="control-group">
+        <label for="shapeSelect">Elige una figura:</label>
+        <select id="shapeSelect">
+          <option value="square">Cuadrado</option>
+          <option value="triangle">Triángulo</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label>Coordenada base (vértice A):</label>
+        <div class="row-inputs">
+          <div>
+            <small>X (-20 a 20)</small>
+            <input type="number" id="initX" value="2" min="-20" max="20" step="1">
+          </div>
+          <div>
+            <small>Y (-20 a 20)</small>
+            <input type="number" id="initY" value="2" min="-20" max="20" step="1">
+          </div>
+        </div>
+        <button class="btn-primary" id="btnPlace">Ubicar Figura</button>
+      </div>
+
+      <h2> 2. Traslación</h2>
+      <div class="control-group">
+        <div class="row-inputs">
+          <div>
+            <small>Mover en X (Δx)</small>
+            <input type="number" id="transX" value="0" min="-30" max="30" step="1">
+          </div>
+          <div>
+            <small>Mover en Y (Δy)</small>
+            <input type="number" id="transY" value="0" min="-30" max="30" step="1">
+          </div>
+        </div>
+      </div>
+
+      <h2> 3. Rotación (sobre su propio eje)</h2>
+      <div class="control-group">
+        <label for="rotAngle">Ángulo: <span id="angleDisplay">0</span>°</label>
+        <input type="range" id="rotAngle" min="0" max="360" value="0" step="15">
+      </div>
+
+      <button class="btn-reset" id="btnReset">Reiniciar Todo</button>
+    </div>
+
+    <!-- Centro: Plano Cartesiano -->
+    <div class="canvas-wrapper">
+      <canvas id="cartesianCanvas" width="520" height="520"></canvas>
+      <div class="legend">
+        <span><i class="dot dot-initial"></i> Posición Inicial</span>
+        <span><i class="dot dot-final"></i> Figura Transformada</span>
+        <span><i class="dot dot-center"></i> Eje de Rotación</span>
+      </div>
+    </div>
+
+    <!-- Panel Derecho: Coordenadas -->
+    <div class="panel">
+      <h2> Coordenadas en Tiempo Real</h2>
+
+      <div class="coords-box">
+        <strong> Coordenadas Actuales (Iniciales):</strong>
+        <ul class="coords-list" id="initialCoordsList"></ul>
+      </div>
+
+      <div class="coords-box">
+        <strong> Parámetros Aplicados:</strong>
+        <p class="params-summary">
+          Traslación: <strong id="summaryTrans">(0, 0)</strong><br>
+          Ángulo de rotación: <strong id="summaryAngle">0°</strong><br>
+          Centro de giro: <strong id="summaryCenter">(0, 0)</strong>
+        </p>
+      </div>
+
+      <div class="coords-box transformed">
+        <strong> Coordenadas Después de Transformar:</strong>
+        <ul class="coords-list" id="finalCoordsList"></ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="./Move.js"></script>
+</body>
+</html>
